@@ -1,0 +1,11 @@
+.filterInput {
+  color: rgb(5, 5, 5);
+  font-size: 18px;
+  margin: 0 auto;
+  padding: 3px;
+  border-radius: 2px;
+  background-color: #ffffff;
+  display: block;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
