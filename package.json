@@ -2,8 +2,9 @@
   "name": "phonebook-goit",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://mykolasenyuk.github.io/phonebook-goit",
   "dependencies": {
+    "@fontsource/roboto": "^4.5.0",
+    "@material-ui/core": "^4.12.3",
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -13,6 +14,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
+    "react-loader-spinner": "^4.0.0",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
@@ -28,7 +30,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "netlify deploy -p"
   },
   "eslintConfig": {
     "extends": [

@@ -1,6 +1,11 @@
 body {
-  background-color: rgb(209, 235, 184);
+  margin: 0;
+  padding: 0;
+  background-color: #f2faea;
 }
 .container {
-  padding: 50px;
+  padding: 10px;
+  height: 100vh;
+  background-image: url('bgImage.jpg');
+  background-size: cover;
 }

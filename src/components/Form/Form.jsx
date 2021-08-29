@@ -1,60 +1,60 @@
-import { useState } from 'react'
-import shortid from 'shortid'
-import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react';
+import shortid from 'shortid';
+import { useDispatch, useSelector } from 'react-redux';
 // import contactActions from '../../redux/contacts/contactActions';
-import s from './Form.module.css'
-import { IoIosPersonAdd } from 'react-icons/io'
-import { contactsSelectors, contactsOperations } from '../../redux/contacts'
-import { toast } from 'react-toastify'
+import s from './Form.module.css';
+import { IoIosPersonAdd } from 'react-icons/io';
+import { contactsSelectors, contactsOperations } from '../../redux/contacts';
+import { toast } from 'react-toastify';
 
 const FormHooks = () => {
-  const [name, setName] = useState('')
-  const [number, setNumber] = useState('')
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
-  const contacts = useSelector(contactsSelectors.getContacts)
-  const dispatch = useDispatch()
+  const contacts = useSelector(contactsSelectors.getContacts);
+  const dispatch = useDispatch();
 
-  const nameInputId = shortid.generate()
-  const numInputId = shortid.generate()
+  const nameInputId = shortid.generate();
+  const numInputId = shortid.generate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.currentTarget
+  const handleChange = e => {
+    const { name, value } = e.currentTarget;
     switch (name) {
       case 'name':
-        setName(value)
-        break
+        setName(value);
+        break;
       case 'number':
-        setNumber(value)
-        break
+        setNumber(value);
+        break;
 
       default:
-        break
+        break;
     }
-  }
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
     const nameInlist = contacts.find(
-      (contact) => contact.name.toLowerCase() === name.toLowerCase(),
-    )
-    const numberInList = contacts.find((contact) => contact.number === number)
+      contact => contact.name.toLowerCase() === name.toLowerCase(),
+    );
+    const numberInList = contacts.find(contact => contact.number === number);
     if (nameInlist) {
-      toast.error(` 🛑 '${name}' is already in your list`)
-      reset()
-      return
+      toast.error(`  '${name}' is already in your list`);
+      reset();
+      return;
     }
     if (numberInList) {
-      toast.error(` 🛑 '${number}' is already in your list`)
-      reset()
-      return
+      toast.error(`  '${number}' is already in your list`);
+      reset();
+      return;
     }
-    dispatch(contactsOperations.addContacts({ name, number }))
-    toast.success(`'${name}' added to phonebook`)
-    reset()
-  }
+    dispatch(contactsOperations.addContacts({ name, number }));
+    toast.success(`'${name}' added to phonebook`);
+    reset();
+  };
   const reset = () => {
-    setName('')
-    setNumber('')
-  }
+    setName('');
+    setNumber('');
+  };
 
   return (
     <div>
@@ -94,7 +94,7 @@ const FormHooks = () => {
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default FormHooks
+export default FormHooks;

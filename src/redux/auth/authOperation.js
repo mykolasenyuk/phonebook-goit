@@ -21,6 +21,7 @@ export const register = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
+      toast.error(`Failed! Enter valid data`);
       return rejectWithValue(error.response.data);
     }
   },
@@ -35,7 +36,7 @@ export const logIn = createAsyncThunk(
 
       return data;
     } catch (error) {
-      toast.error(` 🛑 Enter valid Email and Password!`);
+      toast.error(` Enter valid Email and Password!`);
       return rejectWithValue(error.response.data);
     }
   },
@@ -48,6 +49,7 @@ export const logOut = createAsyncThunk(
       await axios.post('/users/logout');
       token.unset();
     } catch (error) {
+      toast.error(` Something goes wrong!`);
       return rejectWithValue(error.response.data);
     }
   },

@@ -1,40 +1,45 @@
 // import { useState } from 'react';
-import { lazy, Suspense } from 'react'
-import Container from './components/Container/Container'
-import AppBar from './components/AppBar/AppBar'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import { Switch } from 'react-router-dom'
-import { authOperations } from './redux/auth'
-import PrivateRoute from './components/PrivateRoute'
-import PublicRoute from './components/PublicRoute'
+import { lazy, Suspense } from 'react';
+import Container from './components/Container/Container';
+import AppBar from './components/AppBar/AppBar';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { Switch } from 'react-router-dom';
+import { authOperations } from './redux/auth';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
+import LoaderSpiner from './components/Spinner/Spinner';
 const HomeView = lazy(() =>
-  import('./views/HomeView' /*webpackChunkName: "home-view"*/),
-)
+  import('./views/HomeView/HomeView' /*webpackChunkName: "home-view"*/),
+);
 const RegisterView = lazy(() =>
-  import('./views/RegisterView' /*webpackChunkName: "register-view"*/),
-)
+  import(
+    './views/RegisterView/RegisterView' /*webpackChunkName: "register-view"*/
+  ),
+);
 const LoginView = lazy(() =>
-  import('./views/LoginView' /*webpackChunkName: "login-view"*/),
-)
+  import('./views/LoginView/LoginView' /*webpackChunkName: "login-view"*/),
+);
 const PhoneBookView = lazy(() =>
-  import('./views/PhoneBookView' /*webpackChunkName: "phonebook-view"*/),
-)
+  import(
+    './views/PhoneBookView/PhoneBookView' /*webpackChunkName: "phonebook-view"*/
+  ),
+);
 
 export default function App() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(authOperations.fetchCurrentUser())
-  }, [dispatch])
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
 
   return (
     <>
       <Container>
         <AppBar />
         <Switch>
-          <Suspense fallback={<p>Loading...</p>}>
+          <Suspense fallback={<LoaderSpiner />}>
             <PublicRoute exact path="/">
               <HomeView />
             </PublicRoute>
@@ -66,5 +71,5 @@ export default function App() {
         pauseOnHover
       />
     </>
-  )
+  );
 }
