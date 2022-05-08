@@ -23,6 +23,7 @@ const contactsSlice = createSlice({
       state.contacts = action.payload;
       state.isLoading = false;
       state.error = null;
+      console.log(action.payload);
     },
     [fetchContacts.pending](state) {
       state.isLoading = true;

@@ -15,16 +15,16 @@ const ContactsList = () => {
 
   return (
     <ul className={s.contactList}>
-      {contacts.map(({ id, name, number }) => (
-        <li key={id} className={s.contactItem}>
+      {contacts.map(({ _id, name, phone }) => (
+        <li key={_id} className={s.contactItem}>
           <p className={s.contactDescription}>
             <IoIosContact className={s.icon} />
-            {name}: {number}
+            {name}: {phone}
           </p>
           <button
             className={s.deleteBtn}
             type="button"
-            onClick={() => dispatch(contactsOperations.deleteContacts(id))}
+            onClick={() => dispatch(contactsOperations.deleteContacts(_id))}
           >
             <TiDeleteOutline className={s.icon} />
             Delete

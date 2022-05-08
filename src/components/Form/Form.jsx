@@ -9,7 +9,8 @@ import { toast } from 'react-toastify';
 
 const FormHooks = () => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
+  // const [email, setEmail] = useState('');
 
   const contacts = useSelector(contactsSelectors.getContacts);
   const dispatch = useDispatch();
@@ -23,8 +24,8 @@ const FormHooks = () => {
       case 'name':
         setName(value);
         break;
-      case 'number':
-        setNumber(value);
+      case 'phone':
+        setPhone(value);
         break;
 
       default:
@@ -36,24 +37,24 @@ const FormHooks = () => {
     const nameInlist = contacts.find(
       contact => contact.name.toLowerCase() === name.toLowerCase(),
     );
-    const numberInList = contacts.find(contact => contact.number === number);
+    const numberInList = contacts.find(contact => contact.phone === phone);
     if (nameInlist) {
       toast.error(`  '${name}' is already in your list`);
       reset();
       return;
     }
     if (numberInList) {
-      toast.error(`  '${number}' is already in your list`);
+      toast.error(`  '${phone}' is already in your list`);
       reset();
       return;
     }
-    dispatch(contactsOperations.addContacts({ name, number }));
+    dispatch(contactsOperations.addContacts({ name, phone }));
     toast.success(`'${name}' added to phonebook`);
     reset();
   };
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -80,8 +81,8 @@ const FormHooks = () => {
             placeholder="Tel"
             id={numInputId}
             type="tel"
-            name="number"
-            value={number}
+            name="phone"
+            value={phone}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
             required

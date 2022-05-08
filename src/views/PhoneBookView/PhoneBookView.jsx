@@ -10,7 +10,7 @@ import s from './PhoneBookView.module.css';
 export default function PhoneBookView() {
   const contacts = useSelector(contactsSelectors.getContacts);
   const dispatch = useDispatch();
-  // console.log(contacts.length);
+  console.log(contacts.length);
 
   useEffect(() => {
     dispatch(contactsOperations.fetchContacts());
