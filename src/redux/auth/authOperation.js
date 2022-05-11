@@ -2,7 +2,8 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = 'https://phonebook--api.herokuapp.com';
+// axios.defaults.baseURL = 'https://phonebook--api.herokuapp.com';
+axios.defaults.baseURL = 'http://localhost:3000';
 
 const token = {
   set(token) {
