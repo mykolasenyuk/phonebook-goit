@@ -11,6 +11,9 @@ import { authOperations } from './redux/auth';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import LoaderSpiner from './components/Spinner/Spinner';
+import { CssBaseline } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Image from './images/bgImage1.jpg';
 const HomeView = lazy(() =>
   import('./views/HomeView/HomeView' /*webpackChunkName: "home-view"*/),
 );
@@ -28,16 +31,29 @@ const PhoneBookView = lazy(() =>
   ),
 );
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    padding: '10px',
+    minHeight: '100vh',
+    backgroundImage: `url(${Image})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+  },
+}));
+
 export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
+  const classes = useStyles();
+
   return (
     <>
-      <Container>
+      <div className={classes.root}>
         <AppBar />
+        <CssBaseline />
         <Switch>
           <Suspense fallback={<LoaderSpiner />}>
             <PublicRoute exact path="/">
@@ -57,7 +73,7 @@ export default function App() {
             </PrivateRoute>
           </Suspense>
         </Switch>
-      </Container>
+      </div>
 
       <ToastContainer
         position="top-right"
