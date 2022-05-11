@@ -4,11 +4,7 @@ import UserMenu from '../UserMenu';
 import AuthNav from '../AuthNav';
 import { authSelectors } from '../../redux/auth';
 // import styles from './AppBar.module.css';
-import {
-  AppBar,
-  // IconButton,
-  Toolbar,
-} from '@material-ui/core';
+import { AppBar, Toolbar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({

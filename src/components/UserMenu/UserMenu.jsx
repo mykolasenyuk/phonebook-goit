@@ -1,8 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors, authOperations } from '../../redux/auth';
 import { FaUserAstronaut } from 'react-icons/fa';
-import Button from '@material-ui/core/Button';
-const styles = {
+// import Button from '@material-ui/core/Button';
+import { IconButton } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { FiLogOut } from 'react-icons/fi';
+
+const useStyles = makeStyles(theme => ({
+  icon: {
+    color: '#e1d38d',
+    transition: '1s ease-out',
+    '&:hover': {
+      color: '#06aded',
+      transform: 'rotateY(360deg)',
+    },
+  },
   container: {
     display: 'flex',
     alignItems: 'center',
@@ -18,27 +30,25 @@ const styles = {
   name: {
     fontWeight: 700,
     marginRight: 12,
-    color: '#ffffff',
+    color: '#2ba1e7',
+    textTransform: 'capitalize',
   },
-};
+}));
 
 export default function UserMenu() {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const name = useSelector(authSelectors.getUserName);
 
   return (
-    <div style={styles.container}>
-      <span style={styles.name}>Hello, {name}</span>
-      <FaUserAstronaut width="32" style={styles.avatar} />
-
-      <Button
-        type="button"
-        variant="contained"
-        size="small"
-        onClick={() => dispatch(authOperations.logOut())}
-      >
-        Log Out
-      </Button>
+    <div className={classes.container}>
+      <span>
+        Hello, <span className={classes.name}>{name}</span>
+      </span>
+      <FaUserAstronaut width="32" className={classes.avatar} />
+      <IconButton onClick={() => dispatch(authOperations.logOut())}>
+        <FiLogOut className={classes.icon} />
+      </IconButton>
     </div>
   );
 }
