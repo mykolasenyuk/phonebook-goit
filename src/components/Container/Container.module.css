@@ -6,6 +6,6 @@ body {
 .container {
   padding: 10px;
   height: 100vh;
-  background-image: url('bgImage.jpg');
+  background-image: url('bgImage1.jpg');
   background-size: cover;
 }
