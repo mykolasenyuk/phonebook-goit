@@ -1,7 +1,7 @@
 // import { useState } from 'react';
 import { lazy, Suspense } from 'react';
-import Container from './components/Container/Container';
-import AppBar from './components/AppBar/AppBar';
+// import Container from './components/Container/Container';
+import NaviBar from './components/NaviBar/NaviBar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
@@ -52,7 +52,7 @@ export default function App() {
   return (
     <>
       <div className={classes.root}>
-        <AppBar />
+        <NaviBar />
         <CssBaseline />
         <Switch>
           <Suspense fallback={<LoaderSpiner />}>
